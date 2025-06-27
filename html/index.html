@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Linux</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        .lista-principal {
+            display: grid;
+            gap: 1rem;
+            margin-left: 2rem;
+        }
+
+        .sub-lista li {
+            margin-left: 1.5rem;
+        }
+
+        footer {
+            margin-top: 2rem;
+            align-self: end;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Hello, Compass!</h1>
+        <h2>Projeto Linux</h2>
+    </header>
+
+    <main>
+        <h2>O que eu aprendi:</h2>
+
+        <ul class="lista-principal">
+            <li>
+                <h3>Computação em Nuvem</h3>
+                <ul class="sub-lista">
+                    <li>Como criar uma VPC</li>
+                    <li>Como criar uma EC2</li>
+                    <li>Como criar uma Instância</li>
+                    <li>Como uma acessar via SSH</li>
+                </ul>
+            </li>
+
+            <li class="sub-lista">
+                <h3>Servidor NGINX</h3>
+                <ul>
+                    <li>Como subir e configurar um servidor NGINX</li>
+                    <li>Como servir conteúdos no NGINX</li>
+                </ul>
+            </li>
+
+            <li class="sub-lista">
+                <h3>Script em Bash</h3>
+                <ul>
+                    <li>Sintax do bash</li>
+                    <li>Como manipular o conteudo retornado de um comando cURL</li>
+                    <li>Como gerar um arquivo de log</li>
+                    <li>Como utilizar WebHooks</li>
+                    <li>Como utilizar o cron para agendar a execução de scripts</li>
+                </ul>
+            </li>
+        </ul>
+    </main>
+
+    <footer>🌱 Vitória Leda - 2025</footer>
+</body>
+
+</html>
