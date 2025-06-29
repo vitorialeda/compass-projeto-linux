@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+.lista-principal {
+    display: grid;
+    gap: 1rem;
+    margin-left: 2rem;
+}
+
+.sub-lista li {
+    margin-left: 1.5rem;
+}
+
+footer {
+    margin-top: 2rem;
+    align-self: end;
+    text-align: center;
+}
