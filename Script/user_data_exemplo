@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Instalando dependências
+apt update -y
+apt install nginx -y
+apt install unzip -y
+apt install jq -y
+
+# Baixando arquivos de html, css e script
+cd /home/ubuntu
+wget https://github.com/vitorialeda/compass-projeto-linux/archive/refs/heads/main.zip
+unzip main.zip
+
+# Movendo os arquivos html e css para a pasta do NGINX
+cd compass-projeto-linux-main/
+mv html/* /var/www/html/
+systemctl reload nginx
+

@@ -1,12 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Lexend, Verdana, sans-serif;
 }
 
 body {
+    display: grid;
     min-height: 100vh;
     padding: 2rem;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 h2 {
@@ -24,7 +34,7 @@ h2 {
 }
 
 footer {
-    margin-top: 2rem;
+    width: 100%;
     align-self: end;
     text-align: center;
 }
