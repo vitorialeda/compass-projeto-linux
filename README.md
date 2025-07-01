@@ -38,21 +38,37 @@ systemctl reload nginx
 
 - Reinicio o NGINX para que as configurações sejam atualizadas. (```systemctl reload nginx```)
 
+
+---
+
+
 ## NGINX - Servidor
-![Testando a página no NGINX]()
-- Testando a página no NGINX
+#### Verificando se o NGINX rodando:
+![Verificando serviço NGINX](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/1%20-%20verificando%20se%20o%20nginx%20instalou.png)
+
+#### Testando a página no NGINX:
+![Testando a página no NGINX](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/2%20-%20testando%20se%20a%20pagina%20funcionou.png)
 - Para isso basta colar o IP público da EC2 no navegador
 
 ## WebHook - Integração
-1. No canto superior esquerdo, ao lado do nome do servidor existe um ícone de seta para baixo que ao ser clicada exibe diversas configurações. Para criarmos o webhook devemos ir em "Config. do servidor"
 
-    ![config do servidor discord]()
+1. No canto superior esquerdo, ao lado do nome do servidor existe um ícone de seta para baixo que ao ser clicada exibe diversas configurações. Para criarmos o webhook devemos ir em "Config. do servidor":
 
-2. Navegamos até a seção "APPS" e depois até "Integração"
-    ![onde localizar a integração]()
+    ![config do servidor discord](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-07-01%20094520.png)
 
-3. Em seguida basta clicar em Webhooks, escolher um nome, uma imagem e copiar o link por onde será feita a integração e pronto! :D
-    ![Config Weebhook]()
+3. Navegamos até a seção "APPS" e depois até "Integração":
+   
+    ![Onde localizar a integração](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152043.png)
+   =============================
+    ![Localizar weebhook](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152055.png)
+
+5. Em seguida basta clicar em Webhooks, escolher um nome, uma imagem e copiar o link por onde será feita a integração e pronto! :D
+   
+    ![Config Weebhook](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152224.png)
+
+
+---
+
 
 ## Script - Verificação
 
@@ -86,7 +102,7 @@ EOF
 get_response
 ```
 
-#### Função *get_response*
+#### **- Função *get_response***
 - Guardo a URL em uma variável para facilitar a leitura, da mesma forma guardo o horário em que o script foi executado;
 - A variável ```res``` guarda o retorno do comando ```curl```
     - ```-sS``` a flag -s desabilita o medidor de progresso mas a -S permite que ainda mostre a mesagem de erro;
@@ -97,7 +113,8 @@ get_response
 - ``` echo -e "---\n[$time_stamp]:\n$res" >> /var/log/monitoramento.log``` A resposta é entao acrescentada ao arquivo de log.
 
 
-#### Função *notificacao*
+
+#### **- Função *notificacao***
 - Guardo a url do webhook na variável;
 - Guardo em ```mensagem``` o resultado do comando ```echo -e``` que garante a leitura de caracteres especiais como o \ (usaremos \n para quebra de linha) e ```jq -Rs .``` que será responsável por formatar corretamente o json passado para o webhook do Discord. 
     - ```-Rs .``` permite que a resposta seja passada como uma unica string longa.
@@ -111,18 +128,50 @@ get_response
 
 Por fim, a função *get_response* é executada.
 
+
+---
+
+
 ## Testando o Script
-![Rodando o Script]()
-![Resposta bot]()
-![cat arquivo log]()
+#### # Rodando o Script:
+![Rodando o Script](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/3%20-%20rodando%20o%20script.png)
+1. Script com o NGINX rodando;
+2. Desligando o NGINX para simular a queda do servidor;
+3. Script com NGINX desligado.
+
+
+
+#### # Resposta Bot:
+![Resposta bot](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/4%20-%20resposta_bot.png)
+
+
+
+#### # Cat no arquivo de log:
+![cat arquivo log](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/5%20-%20cat_arquivo_log.png)
+
+
+
+---
+
+
 
 ## Cron - Automatização
-![Crontab]()
+#### # Comando cron
+
+![Crontab](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/6%20-%20crontab.png)
+
 - Acessamos a tabela pelo comando ```sudo crontab -e```;
     - O ```sudo``` é necessário para obter permissão de escrita no diretório /var/log;
     - A opção 2 serve para editar o aquivo utilizando o vim.
 
-![Arquivo crontab]()
+
+#### # Arquivo crontab
+![Arquivo crontab](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/7%20-%20arquivo%20crontab.png)
 - ``` */1 * * * * /home/ubuntu/projeto_linux/monitoramento.sh ``` agenda para cada minuto a execução do script encontrado no caminho ```/home/ubuntu/projeto_linux/monitoramento.sh```
 
-![testando o crontab]()
+
+---
+
+
+#### # Testando o crontab
+![testando o crontab](https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/8%20-%20crontab%20funcionando.png)
