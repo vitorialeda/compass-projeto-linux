@@ -1,4 +1,9 @@
 # Projeto Linux
+Esse repositório detalha a criação e configuração de uma VPC (Virtual Private Cloud) e uma instância EC2 (Elastic Compute Cloud) na AWS. Além disso, mostra como:
+- implatar um servidor web NGINX;
+- automatizar sua inicialização usando User Data
+- Acesssar a instância via SSH
+- Implementar um sistema de monitoramento com Webhooks do Discord e agendamento de tarefas via Cron.
 
 ## Criando a VPC
 
