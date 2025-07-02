@@ -1,8 +1,8 @@
 # Projeto Linux
 Esse repositório detalha a criação e configuração de uma VPC (Virtual Private Cloud) e uma instância EC2 (Elastic Compute Cloud) na AWS. Além disso, mostra como:
-- Implatar um servidor web NGINX;
+- Implantar um servidor web NGINX;
 - Automatizar sua inicialização usando User Data;
-- Acesssar a instância via SSH;
+- Acessar a instância via SSH;
 - Implementar um sistema de monitoramento com Webhooks do Discord e agendamento de tarefas via Cron.
 
 ## Criando a VPC
@@ -19,7 +19,7 @@ Esse repositório detalha a criação e configuração de uma VPC (Virtual Priva
         <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/VPC_EC2/2_Configs_VPC.png" alt="Criando a VPC"/>
    </p>
    
-> Nas configurações da VPC seleciono "VPC e muito mais" e mantenho as configurações para criar tambem as subredes, tabela de roteamento e gateway e concluo a configuração clicando em "criar VPC".
+> Nas configurações da VPC seleciono "VPC e muito mais" e mantenho as configurações para criar também as subredes, tabela de roteamento e gateway e concluo a configuração clicando em "criar VPC".
 
 ## Criando a EC2
 Na página de EC2 clico em "Executar instância" para criar uma nova EC2.
@@ -45,7 +45,7 @@ Na página de EC2 clico em "Executar instância" para criar uma nova EC2.
    
 > Configuração de entrada:
 >   - SSH: Acesso apenas pelo meu IP
->   - HTTP: Qualquer ip (apenas para fins de estudo)
+>   - HTTP: Qualquer IP (apenas para fins de estudo)
 
 #### User data
    <p align="center">
@@ -92,7 +92,7 @@ chmod 700 monitoramento.sh
 
 - Utilizando o ```wget``` consigo baixar os arquivos, como html, css e scripts que irei precisar pelo link do github. O ```unzip``` serve para descompactar esses arquivos;
 
-- Vou até a diretório onde estão os arquivos que acabei de baixar (usando ```cd```) e movo o conteudo da pasta "html" para o diretório onde ficam armazenados os sites disponiveis a serem servidos no NGINX (usando ```mv```);
+- Vou até a diretório onde estão os arquivos que acabei de baixar (usando ```cd```) e movo o conteudo da pasta "html" para o diretório onde ficam armazenados os sites disponíveis a serem servidos no NGINX (usando ```mv```);
 
 - Reinicio o NGINX para que as configurações sejam atualizadas. (```systemctl reload nginx```);
 
@@ -106,7 +106,7 @@ chmod 700 monitoramento.sh
 
 ## SSH - Acesso remoto
 
-- Para acessar remotamente é necessário ter um cliente ssh instalado na máquina .
+- Para acessar remotamente é necessário ter um cliente ssh instalado na máquina.
 - ```bash
     sudo apt update
     sudo apt install openssh-client
@@ -115,13 +115,13 @@ Depois basta digitar o comando:
 - ```bash
     ssh -i [senha.pem] [usuário_remoto]@[ip]
     ```
-> "Senha é o par de chaves selecionado durante a criação da EC2"
+> "senha.pem" é o par de chaves selecionado durante a criação da EC2
 
    <p align="center">
         <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/acesso%20ssh.png" alt="Acesso via terminal"/>
    </p>
    
-> *Ip utilizado para fins de exemplo*
+> *IP utilizado para fins de exemplo*
 
 
 <hr/>
@@ -129,7 +129,7 @@ Depois basta digitar o comando:
 
 ## NGINX - Servidor
 
-#### Verificando se o NGINX rodando:
+#### Verificando se o NGINX está rodando:
    <p align="center">
         <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/1%20-%20verificando%20se%20o%20nginx%20instalou.png" alt="Verificando serviço NGINX"/>
    </p>
@@ -141,7 +141,7 @@ Depois basta digitar o comando:
         <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/2%20-%20testando%20se%20a%20pagina%20funcionou.png" alt="Testando a página no NGINX"/>
    </p>
    
-> Para isso basta colar o IP público da EC2 no navegador
+> Para isso basta colar o IP público da EC2 no navegador.
 
 
 <hr/>
@@ -149,17 +149,17 @@ Depois basta digitar o comando:
 
 ## WebHook - Integração
 
-1. No canto superior esquerdo, ao lado do nome do servidor existe um ícone de seta para baixo que ao ser clicada exibe diversas configurações. Para criarmos o webhook devemos ir em "Config. do servidor":
+1. No canto superior esquerdo, ao lado do nome do servidor existe um ícone de seta para baixo que ao ser clicado exibe diversas configurações. Para criarmos o webhook devemos ir em "*Config. do servidor*":
     <p align="center">
         <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-07-01%20094520.png" alt="config do servidor discord"/>
     </p>
 
-4. Navegamos até a seção "APPS" e depois até "Integração":
+4. Navegamos até a seção "*APPS*" e depois até "*Integração*":
    <p align="center">
         <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152043.png" alt="Onde localizar a integração"/>
    </p>
 
-6. Em seguida basta clicar em Webhooks, escolher um nome, uma imagem e copiar o link por onde será feita a integração e pronto! :D
+6. Em seguida basta clicar em *Webhooks*, escolher um nome, uma imagem e copiar o link por onde será feita a integração e pronto! :D
    <p align="center">
         <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152055.png" alt="Onde localizar webhook"/>
    </p>
@@ -222,7 +222,7 @@ get_response
 >    - ```-Rs .``` permite que a resposta seja passada como uma única string longa.
 >
 > - Um bloco de texto formatado é atribuído à variável ```conteudo```;
->    - ```cat << EOF ... EOF ``` é uma técnica chamada *heredoc* que permite passar múltiplas linhas a uma variável. O conteúdo guardará o json necessário para o envio da mensagem.
+>    - ```cat << EOF ... EOF ``` é uma técnica chamada *heredoc* que permite passar múltiplas linhas à uma variável. O conteúdo guardará o json necessário para o envio da mensagem.
 >
 > - ``` curl --json "$conteudo" $WEBHOOK_URL``` faz uma requisição do tipo POST ao webhook, enviando como conteúdo a mensagem passada.
 >    - ```--json``` é uma forma curta de enviar dados formatados em JSON para servidores HTTP usando o método POST sem a necessidade das flags --header, --request POST e --data.
@@ -239,10 +239,11 @@ Por fim, a função *get_response* é executada.
    <p align="center">
         <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/3-rodando_script.png" alt="Rodando o Script"/>
    </p>
-   
+  
 > 1. Script com o NGINX rodando;
 > 2. Desligando o NGINX para simular a queda do servidor;
 > 3. Script com NGINX desligado.
+> - *O ```sudo``` é necessário para obter permissão de escrita no diretório /var/log;*
 
 #### Resposta Bot:
    <p align="center">
@@ -270,7 +271,7 @@ Por fim, a função *get_response* é executada.
    </p>
    
 > Acessamos a tabela pelo comando ```sudo crontab -e```;
->    - O ```sudo``` é necessário para obter permissão de escrita no diretório /var/log;
+>    - O ```sudo``` garante que o script conseguirá escrever no diretório /var/log;
 >    - A opção 2 serve para editar o aquivo utilizando o vim.
 
 #### Arquivo crontab
@@ -278,7 +279,7 @@ Por fim, a função *get_response* é executada.
         <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/7%20-%20arquivo%20crontab.png" alt="Arquivo crontab"/>
    </p>
    
-> Agenda para cada minuto a execução do script encontrado no caminho.
+> Agenda para cada minuto a execução do script.
 
 
 #### Testando o crontab
