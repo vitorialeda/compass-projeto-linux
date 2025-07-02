@@ -19,4 +19,4 @@ systemctl reload nginx
 # Movendo o script
 cp /home/ubuntu/compass-projeto-linux-main/Script/monitoramento.sh /home/ubuntu
 cd
-chmod 744 monitoramento.sh
+chmod 700 monitoramento.sh
