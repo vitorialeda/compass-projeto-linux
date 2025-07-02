@@ -237,7 +237,7 @@ Por fim, a função *get_response* é executada.
 
 #### Rodando o Script:
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/3%20-%20rodando%20o%20script.png" alt="Rodando o Script"/>
+        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/3-rodando_script.png" alt="Rodando o Script"/>
    </p>
    
 > 1. Script com o NGINX rodando;
@@ -246,14 +246,14 @@ Por fim, a função *get_response* é executada.
 
 #### Resposta Bot:
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/4%20-%20resposta_bot.png" alt="Resposta bot"/>
+        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/4%20-%20respostabot.png" alt="Resposta bot"/>
    </p>
    
 > Resposta caso não seja possível acessar o servidor.
 
 #### Cat no arquivo de log:
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/5%20-%20cat_arquivo_log.png" alt="Cat arquivo log"/>
+        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/5%20-%20cat_log.png" alt="Cat arquivo log"/>
    </p>
    
 > Respostas referentes aos comandos acima.
@@ -283,7 +283,7 @@ Por fim, a função *get_response* é executada.
 
 #### Testando o crontab
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/8%20-%20crontab%20funcionando.png" alt="Testando o crontab"/>
+        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/8%20-%20crontab_funcionando.png" alt="Testando o crontab"/>
    </p>
    
 > Intervalo de um minuto entre as mensagens.
