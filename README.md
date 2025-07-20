@@ -139,22 +139,23 @@ Depois basta digitar o comando:
 
 #### Ativando o reinício automático:
    <p align="center">
-        <img src="" alt="Comando para alterar o arquivo de configuração do NGINX."/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/v2/prints/reiniciando%20nginx/comando%20acesso%20arquivo%20nginx.png" alt="Comando para alterar o arquivo de configuração do NGINX."/>
    </p>
 
 > Comando para alterar o arquivo de configuração do NGINX.
 
    <p align="center">
-        <img src="" alt="Editando o arquivo de configuração"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/v2/prints/reiniciando%20nginx/editando%20arquivo%20de%20configuracao.png" alt="Editando o arquivo de configuração"/>
    </p>
 
 > Editando o arquivo de configuração
-> Adicione ass linhas:
+> Adicione as linhas:
+> 
 >    Restart=always
 >    RestartSec=5
 
    <p align="center">
-        <img src="" alt="Salvando e recarregando o serviço"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/v2/prints/reiniciando%20nginx/salvando%20e%20recarregando.png" alt="Salvando e recarregando o serviço"/>
    </p>
 
 > Salvando e recarregando o serviço
@@ -320,5 +321,9 @@ Por fim, a função *get_response* é executada.
 > Intervalo de um minuto entre as mensagens.
 
 ## Melhorias da Versão 2
-- O servidor NGINX agora reinicia automaticamente;
-- Agora o script de monitoramento identifica melhor respostas de erro HTTP e do curl.
+- O servidor NGINX reinicia automaticamente após uma falha;
+- O script de monitoramento identifica melhor respostas de erro HTTP e do curl.
+
+## Melhorias Futuras
+- Utilizar CloudFormation;
+- Utilizar variáveis de ambiente
