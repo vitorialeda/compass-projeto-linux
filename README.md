@@ -1,4 +1,4 @@
-# Projeto Linux
+# Projeto Linux - Monitoramento de Servidor
 Esse repositório detalha a criação e configuração de uma VPC (Virtual Private Cloud) e uma instância EC2 (Elastic Compute Cloud) na AWS. Além disso, mostra como:
 - Implantar um servidor web NGINX;
 - Automatizar sua inicialização usando User Data;
@@ -9,14 +9,14 @@ Esse repositório detalha a criação e configuração de uma VPC (Virtual Priva
 
 #### Navegando na AWS
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/VPC_EC2/1_Criar_VPC.png" alt="Opção para criar VPC"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/VPC_EC2/1_Criar_VPC.png" alt="Opção para criar VPC"/>
    </p>
    
 > Na AWS vou até "Painel da VPC", em seguida clico no botão "Criar VPC"
 
 #### Criando e configurando a VPC
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/VPC_EC2/2_Configs_VPC.png" alt="Criando a VPC"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/VPC_EC2/2_Configs_VPC.png" alt="Criando a VPC"/>
    </p>
    
 > Nas configurações da VPC seleciono "VPC e muito mais" e mantenho as configurações para criar também as subredes, tabela de roteamento e gateway e concluo a configuração clicando em "criar VPC".
@@ -26,21 +26,21 @@ Na página de EC2 clico em "Executar instância" para criar uma nova EC2.
 
 #### Imagem da EC2
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/VPC_EC2/3_Imagem_EC2.png" alt="Escolhendo a imagem da EC2"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/VPC_EC2/3_Imagem_EC2.png" alt="Escolhendo a imagem da EC2"/>
    </p>
    
 > Escolhendo a imagem da EC2
 
 #### Tipo da instância e Par de Chaves
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/VPC_EC2/4_Tipo_de_instancia_e_par_de_chaves.png" alt="Tipo de Instancia e Par de Chaves"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/VPC_EC2/4_Tipo_de_instancia_e_par_de_chaves.png" alt="Tipo de Instancia e Par de Chaves"/>
    </p>
    
 > Escolher o par de chaves (será necessário para conexão ssh por exemplo)
 
 #### Configuração de rede e grupo de segurança
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/VPC_EC2/5_config_rede.png" alt="Configuração de rede e Grupo de segurança"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/VPC_EC2/5_config_rede.png" alt="Configuração de rede e Grupo de segurança"/>
    </p>
    
 > Configuração de entrada:
@@ -49,7 +49,7 @@ Na página de EC2 clico em "Executar instância" para criar uma nova EC2.
 
 #### User data
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/VPC_EC2/6_dados_do_usu%C3%A1rio.png" alt="User data"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/VPC_EC2/6_dados_do_usu%C3%A1rio.png" alt="User data"/>
    </p>
    
 > Configurações que rodarão durante a inicialização da EC2
@@ -71,18 +71,19 @@ apt install jq -y
 
 # Baixando arquivos de html, css e script
 cd /home/ubuntu
-wget https://github.com/vitorialeda/compass-projeto-linux/archive/refs/heads/main.zip
+wget https://github.com/vitorialeda/script-de-monitoramento-de-servidor/archive/refs/heads/main.zip
 unzip main.zip
+mv script-de-monitoramento-de-servidor-main arquivos
 
 # Movendo os arquivos html e css para a pasta do NGINX
-cd compass-projeto-linux-main/
+cd arquivos/
 mv html/* /var/www/html/
 systemctl reload nginx
 
 # Movendo o script
-cp /home/ubuntu/compass-projeto-linux-main/Script/monitoramento.sh /home/ubuntu
+cp /home/ubuntu/arquivos/Script/monitoramento.sh /home/ubuntu
 cd
-chmod 700 monitoramento.sh
+chmod 711 monitoramento.sh
 ```
 - É preciso digitar ```#!/bin/bash``` para indicar qual interpretador de comandos será usado para executar o script;
 
@@ -118,7 +119,7 @@ Depois basta digitar o comando:
 > "senha.pem" é o par de chaves selecionado durante a criação da EC2
 
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/acesso%20ssh.png" alt="Acesso via terminal"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/acesso%20ssh.png" alt="Acesso via terminal"/>
    </p>
    
 > *IP utilizado para fins de exemplo*
@@ -131,14 +132,43 @@ Depois basta digitar o comando:
 
 #### Verificando se o NGINX está rodando:
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/1%20-%20verificando%20se%20o%20nginx%20instalou.png" alt="Verificando serviço NGINX"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/1%20-%20verificando%20se%20o%20nginx%20instalou.png" alt="Verificando serviço NGINX"/>
    </p>
    
 > service --status-all para listar todos os serviços.
 
+#### Ativando o reinício automático:
+   <p align="center">
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/v2/prints/reiniciando%20nginx/comando%20acesso%20arquivo%20nginx.png" alt="Comando para alterar o arquivo de configuração do NGINX."/>
+   </p>
+
+> Comando para alterar o arquivo de configuração do NGINX.
+
+   <p align="center">
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/v2/prints/reiniciando%20nginx/editando%20arquivo%20de%20configuracao.png" alt="Editando o arquivo de configuração"/>
+   </p>
+
+> Editando o arquivo de configuração
+> Adicione as linhas:
+> 
+>    Restart=always
+>    RestartSec=5
+
+   <p align="center">
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/v2/prints/reiniciando%20nginx/salvando%20e%20recarregando.png" alt="Salvando e recarregando o serviço"/>
+   </p>
+
+> Salvando e recarregando o serviço
+```bash
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl restart nginx
+```
+
+
 #### Testando a página no NGINX:
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/2%20-%20testando%20se%20a%20pagina%20funcionou.png" alt="Testando a página no NGINX"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/2%20-%20testando%20se%20a%20pagina%20funcionou.png" alt="Testando a página no NGINX"/>
    </p>
    
 > Para isso basta colar o IP público da EC2 no navegador.
@@ -151,21 +181,21 @@ Depois basta digitar o comando:
 
 1. No canto superior esquerdo, ao lado do nome do servidor existe um ícone de seta para baixo que ao ser clicado exibe diversas configurações. Para criarmos o webhook devemos ir em "*Config. do servidor*":
     <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-07-01%20094520.png" alt="config do servidor discord"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-07-01%20094520.png" alt="config do servidor discord"/>
     </p>
 
 4. Navegamos até a seção "*APPS*" e depois até "*Integração*":
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152043.png" alt="Onde localizar a integração"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152043.png" alt="Onde localizar a integração"/>
    </p>
 
 6. Em seguida basta clicar em *Webhooks*, escolher um nome, uma imagem e copiar o link por onde será feita a integração e pronto! :D
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152055.png" alt="Onde localizar webhook"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152055.png" alt="Onde localizar webhook"/>
    </p>
    
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152224.png" alt="Config Webhook"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/WebHook%20-%20Discord/Captura%20de%20tela%202025-06-29%20152224.png" alt="Config Webhook"/>
    </p>
 
 
@@ -182,12 +212,13 @@ get_response(){
         time_stamp=$(date +"%Y-%m-%d %H:%M");
         res=$(curl -sS -I $URL 2>&1 | head -n 1);
 
-        if [[ ! $res =~ HTTP ]]; then
+        if [[ $res =~ ^(curl: \([0-9]+\)|HTTP/[0-9.]+ [45][0-9]{2}) ]]; then
                 notificacao "[$time_stamp] Erro ao tentar acessar o servidor: \n$res"
         fi
 
         echo -e "---\n[$time_stamp]:\n$res" >> /var/log/monitoramento.log
 }
+
 
 notificacao(){
         WEBHOOK_URL="URL"
@@ -212,7 +243,7 @@ get_response
 >    - ```2>&1``` "2" representa "standard error" e o "1" representa "standard output", o ">" serve para indicar que o a mensagem de erro será redirecionada para a saída padrão do comando. Assim consigo armazenar o erro caso exista um;
 >    - ```head -n 1``` Restringe a saída do curl à primeira linha.
 > 
-> - ```if [[ ! $res =~ HTTP ]]; then ``` Se a resposta do curl não contiver "HTTP", indica que a requisição falhou, pois não foi retornada uma resposta HTTP válida. Nesse caso, uma notificação é enviada para o Discord por meio da funcao *notificacao* passando como parametro a mensagem contendo o time_stamp, uma breve descrição e o erro;
+> - ```if [[ $res =~ ^(curl: \([0-9]+\)|HTTP/[0-9.]+ [45][0-9]{2}) ]]; then ``` Utiliza regex para identificar se a resposta HTTP apresenta um status code nos intervalos 400 e 500 ou se o curl retornou um erro. Nesse caso, uma notificação é enviada para o Discord por meio da funcao *notificacao* passando como parametro a mensagem contendo o time_stamp, uma breve descrição e o erro;
 >   
 > - ``` echo -e "---\n[$time_stamp]:\n$res" >> /var/log/monitoramento.log``` A resposta é acrescentada ao arquivo de log.
 
@@ -237,7 +268,7 @@ Por fim, a função *get_response* é executada.
 
 #### Rodando o Script:
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/3-rodando_script.png" alt="Rodando o Script"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/3-rodando_script.png" alt="Rodando o Script"/>
    </p>
   
 > 1. Script com o NGINX rodando;
@@ -247,14 +278,14 @@ Por fim, a função *get_response* é executada.
 
 #### Resposta Bot:
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/4%20-%20respostabot.png" alt="Resposta bot"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/4%20-%20respostabot.png" alt="Resposta bot"/>
    </p>
    
 > Resposta caso não seja possível acessar o servidor.
 
 #### Cat no arquivo de log:
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/5%20-%20cat_log.png" alt="Cat arquivo log"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/5%20-%20cat_log.png" alt="Cat arquivo log"/>
    </p>
    
 > Respostas referentes aos comandos acima.
@@ -267,7 +298,7 @@ Por fim, a função *get_response* é executada.
 
 #### Comando cron
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/6%20-%20crontab.png" alt="Crontab"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/6%20-%20crontab.png" alt="Crontab"/>
    </p>
    
 > Acessamos a tabela pelo comando ```sudo crontab -e```;
@@ -276,7 +307,7 @@ Por fim, a função *get_response* é executada.
 
 #### Arquivo crontab
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/7%20-%20arquivo%20crontab.png" alt="Arquivo crontab"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/7%20-%20arquivo%20crontab.png" alt="Arquivo crontab"/>
    </p>
    
 > Agenda para cada minuto a execução do script.
@@ -284,7 +315,15 @@ Por fim, a função *get_response* é executada.
 
 #### Testando o crontab
    <p align="center">
-        <img src="https://github.com/vitorialeda/compass-projeto-linux/blob/main/prints/8%20-%20crontab_funcionando.png" alt="Testando o crontab"/>
+        <img src="https://github.com/vitorialeda/script-de-monitoramento-de-servidor/blob/main/prints/8%20-%20crontab_funcionando.png" alt="Testando o crontab"/>
    </p>
    
 > Intervalo de um minuto entre as mensagens.
+
+## Melhorias da Versão 2
+- O servidor NGINX reinicia automaticamente após uma falha;
+- O script de monitoramento identifica melhor respostas de erro HTTP e do curl.
+
+## Melhorias Futuras
+- Utilizar CloudFormation;
+- Utilizar variáveis de ambiente

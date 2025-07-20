@@ -5,7 +5,7 @@ get_response(){
         time_stamp=$(date +"%Y-%m-%d %H:%M");
         res=$(curl -sS -I $URL 2>&1 | head -n 1);
 
-        if [[ ! $res =~ HTTP ]]; then
+        if [[ $res =~ ^(curl: \([0-9]+\)|HTTP/[0-9.]+ [45][0-9]{2}) ]]; then
                 notificacao "[$time_stamp] Erro ao tentar acessar o servidor: \n$res"
         fi
 
