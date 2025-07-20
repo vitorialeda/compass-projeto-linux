@@ -8,15 +8,16 @@ apt install jq -y
 
 # Baixando arquivos de html, css e script
 cd /home/ubuntu
-wget https://github.com/vitorialeda/compass-projeto-linux/archive/refs/heads/main.zip
+wget https://github.com/vitorialeda/script-de-monitoramento-de-servidor/archive/refs/heads/main.zip
 unzip main.zip
+mv script-de-monitoramento-de-servidor-main arquivos
 
 # Movendo os arquivos html e css para a pasta do NGINX
-cd compass-projeto-linux-main/
+cd arquivos/
 mv html/* /var/www/html/
 systemctl reload nginx
 
 # Movendo o script
-cp /home/ubuntu/compass-projeto-linux-main/Script/monitoramento.sh /home/ubuntu
+cp /home/ubuntu/arquivos/Script/monitoramento.sh /home/ubuntu
 cd
-chmod 700 monitoramento.sh
+chmod 711 monitoramento.sh
